@@ -1,0 +1,24 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Iphone",
+            "price": 16000,
+            "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-pro-max.png",
+            "rate": {
+                "count": 100,
+                "star": 3
+            }
+        },
+        {
+            "id": 2,
+            "name": "Samsung",
+            "price": 15000,
+            "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/d/i/dien-thoai-samsung-galaxy-s25-ultra_3__3.png",
+            "rate": {
+                "count": 100,
+                "star": 4
+            }
+        }
+    ]
+}

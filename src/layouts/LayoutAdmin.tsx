@@ -23,7 +23,6 @@ const LayoutAdmin: React.FC = () => {
       key: "2",
       icon: <ProductFilled />,
       label: <NavLink to="/admin/product">Product</NavLink>,
-
     },
     {
       key: "3",

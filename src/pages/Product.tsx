@@ -1,21 +1,23 @@
-import { Breadcrumb, Button, Table } from "antd";
-import React from "react";
+import { StarOutlined } from "@ant-design/icons";
+import { useQuery } from "@tanstack/react-query";
+import { Button, Table } from "antd";
+import axios from "axios";
+import { NavLink } from "react-router";
 
 const Product = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: 100,
-      cost: 50,
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 200,
-      cost: 100,
-    },
-  ];
+  const fetchProducts = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:3000/products");
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const { data: products, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
 
   const columns = [
     {
@@ -29,9 +31,26 @@ const Product = () => {
       key: "price",
     },
     {
-      title: "Cost",
-      dataIndex: "cost",
-      key: "cost",
+      title: "Image",
+      dataIndex: "image",
+      key: "image",
+      render: (record: string) => <img width={100} src={record} alt="" />,
+    },
+    {
+      title: "Rate",
+      dataIndex: "rate",
+      key: "rate",
+      render: (record: { count: number; star: number }) => {
+        const { count, star } = record;
+        return (
+          <div>
+            <div>{count} Point</div>
+            <div>
+              {star} <StarOutlined />
+            </div>
+          </div>
+        );
+      },
     },
     {
       title: "Action",
@@ -39,14 +58,22 @@ const Product = () => {
       render: () => (
         <div>
           <Button type="primary">Edit</Button>
-          <Button color="danger" variant="solid">Delete</Button>
+          <Button color="danger" variant="solid">
+            Delete
+          </Button>
         </div>
       ),
-    }
+    },
   ];
   return (
     <>
-      <Table dataSource={products} columns={columns} />
+      <Button type="primary"><NavLink to={"/admin/product/add"}>Add Product</NavLink></Button>
+      <Table
+        dataSource={products}
+        columns={columns}
+        loading={isLoading}
+        rowKey={(record: { id: number }) => record.id}
+      />
     </>
   );
 };
