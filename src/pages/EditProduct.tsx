@@ -1,11 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button, Form, Input, Select } from "antd";
 import axios from "axios";
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { IProduct } from "./CreateProduct";
 
 const EditProduct = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const getProduct = async () => {
     try {
@@ -19,10 +21,32 @@ const EditProduct = () => {
     queryKey: ["product", id],
     queryFn: getProduct,
   });
-  useEffect(()=>{
-    if(!product) return;
+
+  useEffect(() => {
+    if (!product) return;
     form.setFieldsValue(product);
-  })
+  });
+  const editProduct = async (product: Omit<IProduct, "id">) => {
+    try {
+      const { data } = await axios.put(
+        `http://localhost:3000/products/${id}`,
+        product
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const mutation = useMutation({
+    mutationFn: editProduct,
+    onSuccess: () => {
+      navigate("/admin/product");
+    },
+  });
+  const handleSubmit = (values: Omit<IProduct, "id">) => {
+    mutation.mutate(values);
+  };
 
   return (
     <>
@@ -33,7 +57,7 @@ const EditProduct = () => {
           labelCol={{ span: 4 }}
           layout="horizontal"
           style={{ width: 800 }}
-          // onFinish={handleSubmit}
+          onFinish={handleSubmit}
         >
           <Form.Item name="name" label="Name">
             <Input />

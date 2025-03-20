@@ -1,11 +1,11 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Iphone",
+      "name": "Iphone 15 promax",
       "price": 16000,
+      "category": "smartphone",
       "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-pro-max.png",
-      "category": "smartphone"
+      "id": 1
     },
     {
       "id": 2,
