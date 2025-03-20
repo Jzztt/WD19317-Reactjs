@@ -41,24 +41,6 @@
       "category": "LapTop",
       "image": "abccc",
       "id": 4
-    },
-    {
-      "name": "Sam sung",
-      "price": "1000",
-      "rate": {
-        "count": "10000",
-        "star": "5"
-      },
-      "category": "LapTop",
-      "image": "https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg",
-      "id": 5
-    },
-    {
-      "name": "demo",
-      "price": "999",
-      "category": "LapTop",
-      "image": "https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg",
-      "id": 6
     }
   ]
 }
