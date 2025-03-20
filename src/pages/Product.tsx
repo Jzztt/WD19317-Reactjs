@@ -6,6 +6,8 @@ import { IProduct } from "./CreateProduct";
 
 const Product = () => {
   const queryClient = useQueryClient();
+  const [messageApi, contextHolder] = message.useMessage();
+
   const deleteProduct = async (id: number) => {
     try {
       const { data } = await axios.delete(
@@ -16,13 +18,13 @@ const Product = () => {
       console.log(error);
     }
   };
-   const mutation = useMutation({
-    mutationFn:deleteProduct,
-    onSuccess:() => {
-      message.success("Delete success");
-      queryClient.invalidateQueries({ queryKey: ["products"]})
-    }
-   })
+  const mutation = useMutation({
+    mutationFn: deleteProduct,
+    onSuccess: () => {
+      messageApi.success("Delete success");
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get("http://localhost:3000/products");
@@ -64,7 +66,9 @@ const Product = () => {
       key: "action",
       render: (record: IProduct) => (
         <div>
-          <Button type="primary">Edit</Button>
+          <Button type="primary">
+            <NavLink to={`/admin/product/edit/${record.id}`}>Edit</NavLink>
+          </Button>
           <Popconfirm
             title="Are you sure to delete this product?"
             onConfirm={() => mutation.mutate(record.id)}
@@ -79,6 +83,7 @@ const Product = () => {
   ];
   return (
     <>
+      {contextHolder}
       <Button type="primary">
         <NavLink to={"/admin/product/add"}>Add Product</NavLink>
       </Button>

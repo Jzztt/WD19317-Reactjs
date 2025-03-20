@@ -5,42 +5,14 @@
       "name": "Iphone",
       "price": 16000,
       "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-pro-max.png",
-      "rate": {
-        "count": 100,
-        "star": 3
-      }
+      "category": "smartphone"
     },
     {
       "id": 2,
       "name": "Samsung",
       "price": 15000,
       "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/d/i/dien-thoai-samsung-galaxy-s25-ultra_3__3.png",
-      "rate": {
-        "count": 100,
-        "star": 4
-      }
-    },
-    {
-      "name": "Sam sung s25",
-      "price": "10000",
-      "rate": {
-        "count": "10000",
-        "star": "4"
-      },
-      "category": "SmartPhone",
-      "image": "https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg",
-      "id": 3
-    },
-    {
-      "name": "asus",
-      "price": "1000",
-      "rate": {
-        "count": "10000",
-        "star": "5"
-      },
-      "category": "LapTop",
-      "image": "abccc",
-      "id": 4
+      "category": "smartphone"
     }
   ]
 }

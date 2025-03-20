@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import LayoutAdmin from "./layouts/LayoutAdmin";
 import Product from "./pages/Product";
 import CreateProduct from "./pages/CreateProduct";
+import EditProduct from "./pages/EditProduct";
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="product" element={<Product />} />
           <Route path="product/add" element={<CreateProduct />} />
+          <Route path="product/edit/:id" element={<EditProduct />} />
         </Route>
       </Routes>
     </>
