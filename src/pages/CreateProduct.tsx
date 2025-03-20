@@ -1,12 +1,20 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button, Form, Input, Select } from "antd";
 import axios from "axios";
-import { redirect } from "react-router";
+import { useNavigate } from "react-router";
 
+export interface IProduct{
+  id: number,
+  name: string,
+  price : number,
+  category: string,
+  image: string
+}
 const CreateProduct = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
-  const createProduct = async (payload) => {
+  const createProduct = async (payload : Omit<IProduct,"id">) => {
     try {
       const { data } = await axios.post(
         "http://localhost:3000/products",
@@ -15,28 +23,17 @@ const CreateProduct = () => {
       return data;
     } catch (error) {
         console.log(error);
-
     }
   };
   const mutation = useMutation({
     mutationFn: createProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
-      redirect("/admin/product");
+      navigate("/admin/product");
     },
   });
-  const handleSubmit = (values) => {
-    const payload = {
-      name: values.name,
-      price : values.price,
-      rate: {
-        count: values.ratePoint,
-        star: values.rateStar
-      },
-      category: values.category,
-      image: values.image
-    }
-    mutation.mutate(payload);
+  const handleSubmit = (values: Omit<IProduct,"id">) => {
+    mutation.mutate(values);
   };
 
   return (
@@ -63,12 +60,6 @@ const CreateProduct = () => {
             </Select>
           </Form.Item>
           <Form.Item name="image" label="Image">
-            <Input />
-          </Form.Item>
-          <Form.Item name="ratePoint" label="Rate Point">
-            <Input />
-          </Form.Item>
-          <Form.Item name="rateStar" label="Rate Star">
             <Input />
           </Form.Item>
           <Form.Item label={null}>
