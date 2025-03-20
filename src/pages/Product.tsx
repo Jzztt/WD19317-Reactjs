@@ -1,4 +1,3 @@
-import { StarOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
 import { Button, Table } from "antd";
 import axios from "axios";
@@ -35,22 +34,6 @@ const Product = () => {
       dataIndex: "image",
       key: "image",
       render: (record: string) => <img width={100} src={record} alt="" />,
-    },
-    {
-      title: "Rate",
-      dataIndex: "rate",
-      key: "rate",
-      render: (record: { count: number; star: number }) => {
-        const { count, star } = record;
-        return (
-          <div>
-            <div>{count} Point</div>
-            <div>
-              {star} <StarOutlined />
-            </div>
-          </div>
-        );
-      },
     },
     {
       title: "Action",
