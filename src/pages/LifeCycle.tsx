@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const LifeCycle = () => {
   // local State
@@ -16,8 +16,21 @@ const LifeCycle = () => {
   }, []);
   console.log("render");
 
+  // useRef
+
+  const inputRef = useRef(null);
+  // const inputRef = {
+  //   current: null,
+  // }
+
+  const handleClick = () => {
+    console.log(inputRef.current.focus());
+  };
+
   return (
     <>
+      <input type="text" ref={inputRef} />
+      <button onClick={handleClick}>ClickRef</button>
       <button onClick={handleCount}>Click</button>
       <div>{count}</div>
     </>

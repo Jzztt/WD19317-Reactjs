@@ -3,10 +3,13 @@ import { Button, message, Popconfirm, Table } from "antd";
 import axios from "axios";
 import { NavLink } from "react-router";
 import { IProduct } from "./CreateProduct";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeProvider";
 
 const Product = () => {
   const queryClient = useQueryClient();
   const [messageApi, contextHolder] = message.useMessage();
+  const { theme } = useContext(ThemeContext);
 
   const deleteProduct = async (id: number) => {
     try {
@@ -83,6 +86,7 @@ const Product = () => {
   ];
   return (
     <>
+      {theme}
       {contextHolder}
       <Button type="primary">
         <NavLink to={"/admin/product/add"}>Add Product</NavLink>
