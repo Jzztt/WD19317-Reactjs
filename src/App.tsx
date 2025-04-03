@@ -6,6 +6,8 @@ import CreateProduct from "./pages/CreateProduct";
 import EditProduct from "./pages/EditProduct";
 import Product from "./pages/Product";
 import LearnReducer from "./pages/LearnReducer";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 //
 function App() {
@@ -19,6 +21,9 @@ function App() {
           <Route path="product/edit/:id" element={<EditProduct />} />
           <Route path="learn-reducer" element={<LearnReducer/>}/>
         </Route>
+        <Route path="/register" element={<Register/>} />
+        <Route path="/login" element={<Login/>} />
+
       </Routes>
       {/* <LifeCycle /> */}
     </>

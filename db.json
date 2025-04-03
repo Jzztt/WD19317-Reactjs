@@ -14,5 +14,13 @@
       "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/d/i/dien-thoai-samsung-galaxy-s25-ultra_3__3.png",
       "category": "smartphone"
     }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$u4V4b.kClJaTzWp9czKwNe/uGnHF7eD5sh1WZY2q.x.Tbxi4Qs9aC",
+      "username": "admin",
+      "id": 1
+    }
   ]
 }
