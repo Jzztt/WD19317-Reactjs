@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import CreateProduct from "./pages/CreateProduct";
 import EditProduct from "./pages/EditProduct";
 import Product from "./pages/Product";
+import LearnReducer from "./pages/LearnReducer";
 
 //
 function App() {
@@ -16,9 +17,10 @@ function App() {
           <Route path="product" element={<Product />} />
           <Route path="product/add" element={<CreateProduct />} />
           <Route path="product/edit/:id" element={<EditProduct />} />
+          <Route path="learn-reducer" element={<LearnReducer/>}/>
         </Route>
       </Routes>
-      <LifeCycle />
+      {/* <LifeCycle /> */}
     </>
   );
 }

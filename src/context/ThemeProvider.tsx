@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-
 interface IThemeProviderProps {
   children: React.ReactNode;
 }
