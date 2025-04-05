@@ -19,7 +19,7 @@ const Login = () => {
       );
       return data.accessToken;
     } catch (error) {
-      console.log(error);
+       throw new Error(error as string);
     }
   };
   const mutationLogin = useMutation({
@@ -29,6 +29,7 @@ const Login = () => {
       alert("Login success");
       navigate("/admin/product");
     },
+    onError: (error) => alert(error),
   });
 
   const handleLogin = (values: ILoginPayload) => {
