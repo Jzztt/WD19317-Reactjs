@@ -1,20 +1,20 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, InputNumber, Select } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-export interface IProduct{
-  id: number,
-  name: string,
-  price : number,
-  category: string,
-  image: string
+export interface IProduct {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+  image: string;
 }
 const CreateProduct = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
-  const createProduct = async (payload : Omit<IProduct,"id">) => {
+  const createProduct = async (payload: Omit<IProduct, "id">) => {
     try {
       const { data } = await axios.post(
         "http://localhost:3000/products",
@@ -22,7 +22,7 @@ const CreateProduct = () => {
       );
       return data;
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   };
   const mutation = useMutation({
@@ -32,7 +32,7 @@ const CreateProduct = () => {
       navigate("/admin/product");
     },
   });
-  const handleSubmit = (values: Omit<IProduct,"id">) => {
+  const handleSubmit = (values: Omit<IProduct, "id">) => {
     mutation.mutate(values);
   };
 
@@ -47,10 +47,26 @@ const CreateProduct = () => {
           style={{ width: 800 }}
           onFinish={handleSubmit}
         >
-          <Form.Item name="name" label="Name">
+          <Form.Item
+            name="name"
+            label="Name"
+            rules={[{ required: true, message: "Please input your name" }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="price" label="Price">
+          <Form.Item
+            name="price"
+            label="Price"
+            rules={[
+              {
+                validator: async (_, price) => {
+                  if (!price.startsWith("0")) {
+                    return Promise.reject(new Error("Price must start with 0"));
+                  }
+                },
+              },
+            ]}
+          >
             <Input />
           </Form.Item>
           <Form.Item name="category" label="Select Category">

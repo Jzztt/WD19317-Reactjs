@@ -5,6 +5,7 @@ import { NavLink } from "react-router";
 import { IProduct } from "./CreateProduct";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeProvider";
+import instanceAxios from "../utils/instanceAxios";
 
 const Product = () => {
   const queryClient = useQueryClient();
@@ -13,8 +14,8 @@ const Product = () => {
 
   const deleteProduct = async (id: number) => {
     try {
-      const { data } = await axios.delete(
-        `http://localhost:3000/products/${id}`
+      const { data } = await instanceAxios.delete(
+        `/products/${id}`
       );
       return data;
     } catch (error) {
@@ -30,7 +31,7 @@ const Product = () => {
   });
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/products");
+      const { data } = await instanceAxios.get("/products");
       return data;
     } catch (error) {
       console.log(error);
